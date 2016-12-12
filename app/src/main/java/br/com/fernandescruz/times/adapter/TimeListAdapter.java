@@ -26,7 +26,6 @@ public class TimeListAdapter extends
     private Context context;
     private List<Time> times;
     private OnClickListener clickListener;
-    private TimesViewHolder mHolder;
 
     public TimeListAdapter(Context context, List<Time> times, OnClickListener clickListener)
     {
@@ -40,15 +39,14 @@ public class TimeListAdapter extends
         View v = LayoutInflater.from(this.context)
                 .inflate(R.layout.time_row, parent, false);
 
-        mHolder = new TimesViewHolder(v);
-
         return new TimesViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(TimesViewHolder holder, final int position) {
+    public void onBindViewHolder(final TimesViewHolder holder, final int position) {
 
-        mHolder.tvNome.setText(times.get(position).getNome());
+        //mHolder.tvNome.setText(times.get(position).getNome());
+        holder.tvNome.setText(times.get(position).getNome());
         Picasso.with(context).
                 load(times.get(position).getEscudo())
                 .placeholder(R.mipmap.ic_launcher)
@@ -61,7 +59,7 @@ public class TimeListAdapter extends
 
                 @Override
                 public void onClick(View view) {
-                    clickListener.onClick(mHolder.itemView, position);
+                    clickListener.onClick(holder.itemView, position);
                 }
             });
         }
